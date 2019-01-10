@@ -2,12 +2,15 @@ package com.example.android.layoutprc05;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class BlankFragment extends Fragment {
@@ -20,6 +23,8 @@ public class BlankFragment extends Fragment {
     private TextView mTextView;
 
     CSVreader c;
+
+    RecyclerView recyclerView;
 
     public BlankFragment() {
         // Required empty public constructor
@@ -52,6 +57,9 @@ public class BlankFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         if (getArguments() != null) {
             mContentText = getArguments().getString(ARG_SHOW_TEXT);
         }
@@ -71,6 +79,12 @@ public class BlankFragment extends Fragment {
 
     }
 
+    public List<WordCons> getWords(){
+        List<WordCons> lists;
+                lists = c.words.output();
+        return lists;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,11 +93,19 @@ public class BlankFragment extends Fragment {
         //mContentText = c.words.get(0).printinOrder();
 
 
+
         String mContentText = "The size is : " + c.getSize();
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_blank, container, false);
-        TextView contentTv = rootView.findViewById(R.id.fragment_words);
-        contentTv.setText(mContentText);
+        //TextView contentTv = rootView.findViewById(R.id.fragment_words);
+       // contentTv.setText(mContentText);
+
+        recyclerView = rootView.findViewById(R.id.recyclerview);
+        final WordListAdapter adapter = new WordListAdapter(getContext());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
         return rootView;
     }
 
