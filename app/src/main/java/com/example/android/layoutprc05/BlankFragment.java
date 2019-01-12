@@ -1,6 +1,8 @@
 package com.example.android.layoutprc05;
 
+import android.arch.lifecycle.Observer;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +23,8 @@ public class BlankFragment extends Fragment {
     private String mContentText;
 
     private TextView mTextView;
+
+    private WordViewModel mWordViewModel;
 
     CSVreader c;
 
@@ -45,6 +49,7 @@ public class BlankFragment extends Fragment {
 //        return fragment;
 //    }
 
+
     /**
      *  Create a new fragment.
      * @return
@@ -58,12 +63,9 @@ public class BlankFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         if (getArguments() != null) {
             mContentText = getArguments().getString(ARG_SHOW_TEXT);
         }
-
         //String filePath = new InputStreamReader(getResources().openRawResource(R.raw.words));
         c = new CSVreader();
         try {
@@ -72,27 +74,14 @@ public class BlankFragment extends Fragment {
             e.printStackTrace();
         }
 
+       // mWordViewModel = ViewModelProvider.of(this).get(WordViewModel.class);
+
         //readCsvFile();
-
-        //c = new CSVreader();
-
-
-    }
-
-    public List<WordCons> getWords(){
-        List<WordCons> lists;
-                lists = c.words.output();
-        return lists;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-        //mContentText = c.words.get(0).printinOrder();
-
-
 
         String mContentText = "The size is : " + c.getSize();
         // Inflate the layout for this fragment
@@ -101,10 +90,17 @@ public class BlankFragment extends Fragment {
        // contentTv.setText(mContentText);
 
         recyclerView = rootView.findViewById(R.id.recyclerview);
-        final WordListAdapter adapter = new WordListAdapter(getContext());
+        final WordListAdapter adapter = new WordListAdapter(this.getContext());
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
+        mWordViewModel.getmAllWords().observe(this, new Observer<List<WordData>>() {
+            @Override
+            public void onChanged(@Nullable final List<WordData> words) {
+                // Update the cached copy of the words in the adapter.
+                adapter.setWords(words);
+            }
+        });
 
         return rootView;
     }

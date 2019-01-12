@@ -1,5 +1,6 @@
 package com.example.android.layoutprc05;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -7,40 +8,80 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "word_table")
 public class WordData {
 
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    public int wordId;
+//    @PrimaryKey(autoGenerate = true)
+//    @ColumnInfo( name = "wordid")
+//    @NonNull
+//    public int mWordId;
 
     @NonNull
-    public String Word;
+    @PrimaryKey
+    @ColumnInfo( name = "word")
+    public String mWord;
 
     @NonNull
-    public int weight;
+    @ColumnInfo( name = "weight")
+    public int mWeight;
 
     @NonNull
-    public String pronunciation;
+    @ColumnInfo( name = "pronunciation")
+    public String mPronunciation;
 
-    public String verb;
+    @ColumnInfo( name = "verb")
+    public String mVerb;
 
-    public String verbt;
+    @ColumnInfo( name = "verbt")
+    public String mVerbt;
 
-    public String verbi;
+    @ColumnInfo( name = "verbi")
+    public String mVerbi;
 
-    public String noun;
+    @ColumnInfo( name = "noun")
+    public String mNoun;
 
-    public String adj;
+    @ColumnInfo( name = "adj")
+    public String mAdj;
 
-    public String adv;
+    @ColumnInfo( name = "adv")
+    public String mAdv;
 
-    public String prep;
+    @ColumnInfo( name = "prep")
+    public String mPrep;
 
-    public String conj;
+    @ColumnInfo( name = "conj")
+    public String mConj;
 
-    public String sentence;
+    @ColumnInfo( name = "sentence")
+    public String mSentence;
 
-    public String looklike;
+    @ColumnInfo( name = "looklike")
+    public String mLooklike;
 
-    public String homoionym;
+    @ColumnInfo( name = "homoionym")
+    public String mHomoionym;
 
-    public String antonym;
+    @ColumnInfo( name = "antonym")
+    public String mAntonym;
+
+    public WordData(String WORD, int WEIGHT, String PRONUNCIATION, String VERB, String VERBT,
+                    String VERBI, String NOUN, String ADJ, String ADV, String PREP, String CONJ, String SENTENCE,
+                    String LOOKLIKE, String HOMOIONYM, String ANTONYM ) {
+        this.mWord = WORD;
+        this.mWeight = WEIGHT;
+        this.mPronunciation = PRONUNCIATION;
+        this.mVerb = VERB;
+        this.mVerbt = VERBT;
+        this.mVerbi = VERBI;
+        this.mNoun = NOUN;
+        this.mAdj = ADJ;
+        this.mAdv = ADV;
+        this.mPrep = PREP;
+        this.mConj = CONJ;
+        this.mSentence = SENTENCE;
+        this.mLooklike = LOOKLIKE;
+        this.mHomoionym = HOMOIONYM;
+        this.mAntonym = ANTONYM;
+
+    }
+
+    public WordData() {}
 }

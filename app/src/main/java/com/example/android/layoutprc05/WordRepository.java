@@ -11,7 +11,13 @@ public class WordRepository {
     private WordDao mWordDao;
 
     private LiveData<List<WordData>> mAllwords;
+    //private List<WordData> mAllwords;
 
+    /**
+     * Constructor that gets a handle to the database and initializes the
+     * member variables.
+     * @param application
+     */
     WordRepository(Application application) {
         WordRoomDatabase db = WordRoomDatabase.getDatabase(application);
         mWordDao = db.wordDao();
@@ -21,11 +27,21 @@ public class WordRepository {
     LiveData<List<WordData>> getAllWords() {
         return mAllwords;
     }
+//    List<WordData> getAllWords() {
+//    return mAllwords;
+//}
 
+    /**
+     * insert method, must call on non-ui thread.
+     * @param word
+     */
     public void insert (WordData word) {
         new insertAsyncTask(mWordDao).execute(word);
     }
 
+    /**
+     * Extra thread running database.
+     */
     private static class insertAsyncTask extends AsyncTask<WordData, Void, Void> {
 
         private WordDao mAsyncTaskDao;

@@ -14,15 +14,14 @@ public interface WordDao {
     @Insert
     void insert(WordData worddata);
 
-    @Query("SELECT wordId, weight FROM WORD_TABLE ORDER BY weight ASC")
+    @Query("SELECT weight FROM WORD_TABLE ORDER BY weight ASC")
     void getWeight();
 
     @Delete
     void deleteAll(WordData wordData);
 
-    @Query("SELECT * FROM WORD_TABLE ORDER BY weight ASC")
+    @Query("SELECT word FROM WORD_TABLE ORDER BY weight ASC")
     LiveData<List<WordData>> getAllbyweight();
-
-
+    //List<WordData> getAllbyweight();
 
 }

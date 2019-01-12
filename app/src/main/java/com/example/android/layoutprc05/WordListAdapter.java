@@ -24,8 +24,6 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         }
     }
 
-
-
     WordListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
     }

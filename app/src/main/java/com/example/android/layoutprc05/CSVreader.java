@@ -6,18 +6,27 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CSVreader {
 
+    WordRoomDatabase wdb;
+
+    WordData wordData;
+
     Scanner sc = null;
-    static ArrayList<WordCons> words = new ArrayList<>();
+    static List<WordCons> words;
 
     public CSVreader() {
     }
 
     public int getSize(){
         return words.size();
+    }
+
+    public WordCons getData(int i){
+        return words.get(i);
     }
 
     public static void readFromCSV(InputStream inputStream) throws IOException {
