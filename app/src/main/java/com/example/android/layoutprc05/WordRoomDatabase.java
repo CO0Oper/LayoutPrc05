@@ -71,31 +71,37 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 
             WordCons wo = new WordCons();
 
-            for(int i = 0; i < c.getSize(); i++ ){
-                wo = c.getData(i);
+//            for(int i = 0; i < c.getSize(); i++ ){
+//                wo = c.getData(i);
+//                word = wo.word;
+//                weight = wo.weight;
+//                pronunciation = wo.pronunciation;
+//                verb = wo.verb;
+//                verbt = wo.verbt;
+//                verbi = wo.verbi;
+//                noun = wo.noun;
+//                adj = wo.adj;
+//                adv = wo.adv;
+//                prep = wo.prep;
+//                conj = wo.conj;
+//                sentence = wo.sentence;
+//                looklike = wo.looklike;
+//                homoionym = wo.homoionym;
+//                antonym = wo.antonym;
+//
+//                WordData worddb = new WordData(word, weight, pronunciation, verb, verbt, verbi,
+//                        noun, adj, adv, prep, conj, sentence, looklike, homoionym,antonym);
+//
+//                mDao.insert(worddb);
+//
+//            }
 
-                word = wo.word;
-                weight = wo.weight;
-                pronunciation = wo.pronunciation;
-                verb = wo.verb;
-                verbt = wo.verbt;
-                verbi = wo.verbi;
-                noun = wo.noun;
-                adj = wo.adj;
-                adv = wo.adv;
-                prep = wo.prep;
-                conj = wo.conj;
-                sentence = wo.sentence;
-                looklike = wo.looklike;
-                homoionym = wo.homoionym;
-                antonym = wo.antonym;
+            WordData word2 = new WordData("Test", 1, "pro", "Testv",  "Testt", "Testi", "Testn",
+                    "Testa", "TestAdv", "Prep", "Conj", "sentence", "Looklike", "homoinym", "ho");
 
-                WordData worddb = new WordData(word, weight, pronunciation, verb, verbt, verbi,
-                        noun, adj, adv, prep, conj, sentence, looklike, homoionym,antonym);
-
-                mDao.insert(worddb);
-
-            }
+//            mDao.insertBycsv("Test", 1, "pro", "Testv",  "Testt", "Testi", "Testn",
+//                    "Testa", "TestAdv", "Prep", "Conj", "sentence", "Looklike", "homoinym", "ho");
+            mDao.insert(word2);
 
 
 //        WordData word = new WordData("Hello");

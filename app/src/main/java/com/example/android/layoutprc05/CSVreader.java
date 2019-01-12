@@ -64,11 +64,13 @@ public class CSVreader {
                     weight = Integer.parseInt(csvList.get(row)[1]);
                 }else {
                     weight = 0;
+                    //return;
                 }
                 if(csvList.get(row)[2]!=null) {
                     pronunciation = csvList.get(row)[2];
                 }else {
                     pronunciation = "";
+                    //return;
                 }
                 if(csvList.get(row)[3]!=null) {
                     verb = csvList.get(row)[3];

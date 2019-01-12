@@ -5,25 +5,25 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-@Entity(tableName = "word_table")
+@Entity(tableName = "WORD_TABLE")
 public class WordData {
 
-//    @PrimaryKey(autoGenerate = true)
-//    @ColumnInfo( name = "wordid")
-//    @NonNull
-//    public int mWordId;
+  /*  @PrimaryKey(autoGenerate = true)
+    @ColumnInfo( name = "wordid")
+    @NonNull
+    public int mWordId;*/
 
     @NonNull
     @PrimaryKey
     @ColumnInfo( name = "word")
     public String mWord;
 
-    @NonNull
-    @ColumnInfo( name = "weight")
+    //@NonNull
+    @ColumnInfo( name = "mWeight")
     public int mWeight;
 
-    @NonNull
-    @ColumnInfo( name = "pronunciation")
+    //@NonNull
+    @ColumnInfo( name = "mPronunciation")
     public String mPronunciation;
 
     @ColumnInfo( name = "verb")
@@ -80,8 +80,6 @@ public class WordData {
         this.mLooklike = LOOKLIKE;
         this.mHomoionym = HOMOIONYM;
         this.mAntonym = ANTONYM;
-
     }
-
     public WordData() {}
 }
