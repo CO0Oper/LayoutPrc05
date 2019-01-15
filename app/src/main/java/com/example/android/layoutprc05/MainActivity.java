@@ -1,18 +1,13 @@
 package com.example.android.layoutprc05;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.annotation.Nullable;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.RadioGroup;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,15 +16,12 @@ public class MainActivity extends AppCompatActivity {
 
     private WordViewModel mWordViewModel;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mWordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
-
-
 
         initView();
     }
@@ -40,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         mFragmentSparseArray = new SparseArray<>();
         mFragmentSparseArray.append(R.id.today_tab, BlankFragment.newFragment());
         mFragmentSparseArray.append(R.id.contact_tab, UserFragment.newInstance("通讯录"));
+
         mTabRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

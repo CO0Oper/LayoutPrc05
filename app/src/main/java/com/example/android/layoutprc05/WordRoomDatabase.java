@@ -51,7 +51,7 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 
         WordData wordData;
 
-        CSVreader c;
+        //CSVreader c;
 
         PopulateDbAsync(WordRoomDatabase db) {
             mDao = db.wordDao();
@@ -65,11 +65,11 @@ public abstract class WordRoomDatabase extends RoomDatabase {
                     adj, adv, prep, conj, sentence, looklike, homoionym, antonym;
             int weight;
 
-             c = new CSVreader();
+             //c = new CSVreader();
 
             mDao.deleteAll(wordData);
 
-            WordCons wo = new WordCons();
+            //WordCons wo = new WordCons();
 
 //            for(int i = 0; i < c.getSize(); i++ ){
 //                wo = c.getData(i);

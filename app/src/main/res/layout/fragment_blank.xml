@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".BlankFragment">
 
+
+
     <android.support.v7.widget.RecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -13,6 +15,8 @@
         android:layout_height="match_parent"
         android:background="@android:color/darker_gray"
         tools:listitem="@layout/recyclerview_item">
+
+
 
     </android.support.v7.widget.RecyclerView>
 
