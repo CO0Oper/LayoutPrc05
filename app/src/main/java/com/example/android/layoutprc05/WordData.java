@@ -8,15 +8,17 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "WORD_TABLE")
 public class WordData {
 
-  /*  @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo( name = "wordid")
     @NonNull
-    public int mWordId;*/
+    public int mWordId;
 
     @NonNull
-    @PrimaryKey
+    //@PrimaryKey
     @ColumnInfo( name = "word")
     public String mWord;
+
+   // public Word(@Nullable String word) { this.mWord = word;}
 
     //@NonNull
     @ColumnInfo( name = "mWeight")
@@ -81,5 +83,7 @@ public class WordData {
         this.mHomoionym = HOMOIONYM;
         this.mAntonym = ANTONYM;
     }
+
     public WordData() {}
+
 }

@@ -51,7 +51,7 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 
         WordData wordData;
 
-        //CSVreader c;
+        CSVreader c = new CSVreader();
 
         PopulateDbAsync(WordRoomDatabase db) {
             mDao = db.wordDao();
@@ -103,14 +103,31 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 //                    "Testa", "TestAdv", "Prep", "Conj", "sentence", "Looklike", "homoinym", "ho");
             mDao.insert(word2);
 
-
 //        WordData word = new WordData("Hello");
 //        mDao.insert(word);
 //        wordDA = new Word("World");
 //        mDao.insert(word);
 
+//
+            c.getList();
+
+            for(int i = 0; i < c.getSize(); i++) {
+                WordData word3 = new WordData(
+                     c. getListA( 1).word, c. getListA( 1).weight,
+                        c. getListA( 1).pronunciation, c. getListA( 1).verb,
+                        c. getListA( 1).verbt, c. getListA( 1).verbi,
+                        c. getListA( 1).noun, c. getListA( 1).adj,
+                        c. getListA( 1).adv, c. getListA( 1).prep,
+                        c. getListA( 1).conj, c. getListA( 1).sentence,
+                        c. getListA( 1).looklike, c. getListA( 1).homoionym,
+                        c. getListA( 1).antonym
+                );
+                mDao.insert(word3);
+            }
+
             return null;
         }
+
 
     }
 

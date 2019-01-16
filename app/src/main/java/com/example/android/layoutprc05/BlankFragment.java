@@ -8,11 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.csvreader.CsvReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class BlankFragment extends Fragment {
@@ -26,12 +22,7 @@ public class BlankFragment extends Fragment {
 
     private WordViewModel mWordViewModel;
 
-    static List<WordData> words;
-
-    TextView contenttv;
-
-
-    //CSVreader c = new CSVreader();
+    CSVreader c = new CSVreader();
 
     RecyclerView recyclerView;
 
@@ -72,17 +63,7 @@ public class BlankFragment extends Fragment {
         if (getArguments() != null) {
             mContentText = getArguments().getString(ARG_SHOW_TEXT);
         }
-        //String filePath = new InputStreamReader(getResources().openRawResource(R.raw.words));
-        //CSVreader c = new CSVreader();
-
-        try {
-            readFromCSV();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
        // mWordViewModel = ViewModelProvider.of(this).get(WordViewModel.class);
-
-        //readCsvFile();
     }
 
     @Override
@@ -90,23 +71,59 @@ public class BlankFragment extends Fragment {
                              Bundle savedInstanceState) {
         /*
         In fragment_blank.xml
-            <TextView
-        android:id="@+id/testtvv"
+    <android.support.v7.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/word_title"
-        android:background="#b2ebf2"/>
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        tools:listitem="@layout/recyclerview_item">
+
+
+
+    </android.support.v7.widget.RecyclerView>
          */
-
-
 
         //String mContentText = "The size is : " + getSize();
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_blank, container, false);
         TextView contentTv = rootView.findViewById(R.id.testtvv);
        // contentTv.setText(mContentText);
-        String ss = "Read size: \n Read size: \n Read size: \n Read size:";
-        contentTv.setText(ss);
+
+        if(c.getSize() == 0) {
+            try {
+                c.readFromCSV(getResources().openRawResource(R.raw.words));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        String ss = "The size of csvfile: " + c.getSize();
+
+        String test2 = c.getList(1);
+
+
+        String test3 = "";
+        test3 += c. getListA( 1).word;
+        test3 += c. getListA( 1).weight;
+        test3 += c. getListA( 1).pronunciation;
+        test3 += c. getListA( 1).verb;
+        test3 += c. getListA( 1).verbt;
+        test3 += c. getListA( 1).verbi;
+        test3 += c. getListA( 1).noun;
+        test3 += c. getListA( 1).adj;
+        test3 += c. getListA( 1).adv;
+        test3 += c. getListA( 1).prep;
+        test3 += c. getListA( 1).conj;
+        test3 += c. getListA( 1).sentence;
+        test3 += c. getListA( 1).looklike;
+        test3 += c. getListA( 1).homoionym;
+        test3 += c. getListA( 1).antonym;
+
+
+
+        contentTv.setText(test3);
 //
 //        recyclerView = rootView.findViewById(R.id.recyclerview);
 //        final WordListAdapter adapter = new WordListAdapter(this.getContext());
@@ -125,124 +142,4 @@ public class BlankFragment extends Fragment {
 
         return rootView;
     }
-
-//    public int getSize(){
-//        return words.size();
-//    }
-
-    public void readFromCSV() throws IOException {
-
-        ArrayList<String[]> csvList = new ArrayList<>();
-
-        String word, pronunciation, verb, verbt, verbi, noun,
-                adj, adv, prep, conj, sentence, looklike, homoionym, antonym;
-        int weight;
-
-        /* Invoke using String path*/
-        //CsvReader reader = new CsvReader("words.csv", ',', Charset.forName("utf-8"));
-
-        /* Invoke using InputSteam*/
-        CsvReader reader = new CsvReader(new InputStreamReader(getResources().openRawResource(R.raw.words),"UTF-8"));
-
-        reader.readHeaders();
-
-        while(reader.readRecord()) {
-
-            csvList.add(reader.getValues());
-        }
-        reader.close();
-
-        for(int row = 0; row < csvList.size(); row++) {
-            //int row = ;
-            if(csvList.get(row)[0]!=null && csvList.get(row)[0] != "") {
-                word = csvList.get(row)[0];
-            }else {
-                word = "";
-            }
-            if(csvList.get(row)[1]!=null) {
-                //weight = Integer.parseInt(csvList.get(row)[1]);
-
-                weight = Integer.parseInt(csvList.get(row)[1]);
-            }else {
-                weight = 0;
-                //return;
-            }
-            if(csvList.get(row)[2]!=null) {
-                pronunciation = csvList.get(row)[2];
-            }else {
-                pronunciation = "";
-                //return;
-            }
-            if(csvList.get(row)[3]!=null) {
-                verb = csvList.get(row)[3];
-            }else {
-                verb = "";
-            }
-            if(csvList.get(row)[4]!=null) {
-                verbt = csvList.get(row)[4];
-            }else {
-                verbt = "";
-            }
-            if(csvList.get(row)[5]!=null) {
-                verbi = csvList.get(row)[5];
-            }else {
-                verbi = "";
-            }
-            if(csvList.get(row)[6]!=null) {
-                noun = csvList.get(row)[6];
-            }else {
-                noun = "";
-            }
-            if(csvList.get(row)[7]!=null) {
-                adj = csvList.get(row)[7];
-            }else {
-                adj = "";
-            }
-            if(csvList.get(row)[8]!=null) {
-                adv = csvList.get(row)[8];
-            }else {
-                adv = "";
-            }
-            if(csvList.get(row)[9]!=null) {
-                prep = csvList.get(row)[9];
-            }else {
-                prep = "";
-            }
-            if(csvList.get(row)[10]!=null) {
-                conj = csvList.get(row)[10];
-            }else {
-                conj = "";
-            }
-            if(csvList.get(row)[11]!=null) {
-                sentence = csvList.get(row)[11];
-            }else {
-                sentence = "";
-            }
-            if(csvList.get(row)[12]!=null) {
-                looklike = csvList.get(row)[12];
-            }else {
-                looklike = "";
-            }
-            if(csvList.get(row)[13]!=null) {
-                homoionym = csvList.get(row)[13];
-            }else {
-                homoionym = "";
-            }
-            if(csvList.get(row)[14]!=null) {
-                antonym = csvList.get(row)[14];
-            }else {
-                antonym = "";
-            }
-
-            WordData worddata = new WordData(word, weight, pronunciation, verb, verbt, verbi, noun,
-                    adj, adv, prep, conj, sentence, looklike, homoionym, antonym);
-            //System.out.println(wordcons.output());
-
-            //words.add(worddata);
-            //System.out.println(words.get(0).output());
-
-
-        }
-    }
-
 }
