@@ -1,11 +1,7 @@
 package com.example.android.layoutprc05;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.io.IOException;
-import java.util.List;
 
 
 public class BlankFragment extends Fragment {
@@ -68,7 +63,6 @@ public class BlankFragment extends Fragment {
         if (getArguments() != null) {
             mContentText = getArguments().getString(ARG_SHOW_TEXT);
         }
-
        // mWordViewModel = ViewModelProvider.of(this).get(WordViewModel.class);
     }
 
@@ -77,18 +71,24 @@ public class BlankFragment extends Fragment {
                              Bundle savedInstanceState) {
         /*
         In fragment_blank.xml
-    <TextView
-        android:id="@+id/testtvv"
+    <android.support.v7.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/word_title"
-        android:background="#b2ebf2"/>
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        tools:listitem="@layout/recyclerview_item">
+
+
+
+    </android.support.v7.widget.RecyclerView>
          */
 
         //String mContentText = "The size is : " + getSize();
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_blank, container, false);
-        //TextView contentTv = rootView.findViewById(R.id.testtvv);
+        TextView contentTv = rootView.findViewById(R.id.testtvv);
        // contentTv.setText(mContentText);
 
         if(c.getSize() == 0) {
@@ -104,7 +104,7 @@ public class BlankFragment extends Fragment {
         String test2 = c.getList(1);
 
 
-/*        String test3 = "";
+        String test3 = "";
         test3 += c. getListA( 1).word;
         test3 += c. getListA( 1).weight;
         test3 += c. getListA( 1).pronunciation;
@@ -119,34 +119,26 @@ public class BlankFragment extends Fragment {
         test3 += c. getListA( 1).sentence;
         test3 += c. getListA( 1).looklike;
         test3 += c. getListA( 1).homoionym;
-        test3 += c. getListA( 1).antonym;*/
-
-
-        //contentTv.setText(test3);
+        test3 += c. getListA( 1).antonym;
 
 
 
-
-        recyclerView = rootView.findViewById(R.id.recyclerview);
-        final WordListAdapter adapter = new WordListAdapter(this.getContext());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
-
-        WordViewModel model = ViewModelProviders.of(getActivity()).get(WordViewModel.class);
-
-        model.getAllWords();
-
+        contentTv.setText(test3);
+//
+//        recyclerView = rootView.findViewById(R.id.recyclerview);
+//        final WordListAdapter adapter = new WordListAdapter(this.getContext());
+//        recyclerView.setAdapter(adapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         //contenttv = rootView.findViewById(R.id.testtvv);
 
-        model.getAllWords().observe(this, new Observer<List<WordData>>() {
-            @Override
-            public void onChanged(@Nullable final List<WordData> words) {
-                // Update the cached copy of the words in the adapter.
-                adapter.setWords(words);
-            }
-        });
+//        mWordViewModel.getmAllWords().observe(this, new Observer<List<WordData>>() {
+//            @Override
+//            public void onChanged(@Nullable final List<WordData> words) {
+//                // Update the cached copy of the words in the adapter.
+//                adapter.setWords(words);
+//            }
+//        });
 
         return rootView;
     }

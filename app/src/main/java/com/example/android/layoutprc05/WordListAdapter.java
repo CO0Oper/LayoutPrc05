@@ -17,31 +17,17 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
     class WordViewHolder extends RecyclerView.ViewHolder {
         private final TextView wordItemView;
-        private final TextView weightItemView;
-        private final TextView prounciationView;
-
-
 
         private WordViewHolder(View itemView) {
             super(itemView);
-            wordItemView = itemView.findViewById(R.id.textView1);
-            weightItemView = itemView.findViewById(R.id.textView2);
-            prounciationView = itemView.findViewById(R.id.textView3);
-
+            wordItemView = itemView.findViewById(R.id.textView);
         }
     }
 
-    public WordListAdapter(Context context) {
-
+    WordListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
     }
 
-    /**
-     * Create new views
-     * @param parent
-     * @param viewType
-     * @return
-     */
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
@@ -49,17 +35,11 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     }
 
 
-    /**
-     * Replace the contents of a view.
-     * @param holder
-     * @param position
-     */
     @Override
     public void onBindViewHolder(WordViewHolder holder, int position) {
         if (mWords != null) {
             WordData current = mWords.get(position);
-            holder.wordItemView.setText("Weight: " + current.getWeight());
-            //WordData getWeight =
+            holder.wordItemView.setText(current.toString());
         } else {
             // Covers the case of data not being ready yet.
             holder.wordItemView.setText("No Word");
