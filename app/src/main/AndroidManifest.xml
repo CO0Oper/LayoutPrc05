@@ -20,7 +20,6 @@
         <activity
             android:name=".SignActivity"
             android:screenOrientation="portrait" />
-
     </application>
 
 </manifest>

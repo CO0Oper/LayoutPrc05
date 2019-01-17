@@ -6,6 +6,8 @@ public class WordCons {
             adj, adv, prep, conj, sentence, looklike, homoionym, antonym;
     int weight;
 
+    //public WordCons() {}
+
     public WordCons(String WORD, int WEIGHT, String PRONUNCIATION, String VERB, String VERBT,
                     String VERBI, String NOUN, String ADJ, String ADV, String PREP, String CONJ, String SENTENCE,
                     String LOOKLIKE, String HOMOIONYM, String ANTONYM ) {

@@ -2,6 +2,7 @@ package com.example.android.layoutprc05;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,16 @@ public class BlankFragment extends Fragment {
 
     private TextView mTextView;
 
-    CSVreader c;
+    private WordViewModel mWordViewModel;
+
+    CSVreader c = new CSVreader();
+
+    RecyclerView recyclerView;
 
     public BlankFragment() {
         // Required empty public constructor
     }
+
 
 //    /**
 //     * Use this factory method to create a new instance of
@@ -40,6 +46,7 @@ public class BlankFragment extends Fragment {
 //        return fragment;
 //    }
 
+
     /**
      *  Create a new fragment.
      * @return
@@ -52,39 +59,87 @@ public class BlankFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mContentText = getArguments().getString(ARG_SHOW_TEXT);
         }
-
-        //String filePath = new InputStreamReader(getResources().openRawResource(R.raw.words));
-        c = new CSVreader();
-        try {
-            c.readFromCSV(getResources().openRawResource(R.raw.words));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //readCsvFile();
-
-        //c = new CSVreader();
-
-
+       // mWordViewModel = ViewModelProvider.of(this).get(WordViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        /*
+        In fragment_blank.xml
+    <android.support.v7.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        tools:listitem="@layout/recyclerview_item">
 
 
-        //mContentText = c.words.get(0).printinOrder();
 
+    </android.support.v7.widget.RecyclerView>
+         */
 
-        String mContentText = "The size is : " + c.getSize();
+        //String mContentText = "The size is : " + getSize();
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_blank, container, false);
-        TextView contentTv = rootView.findViewById(R.id.fragment_words);
-        contentTv.setText(mContentText);
+        TextView contentTv = rootView.findViewById(R.id.testtvv);
+       // contentTv.setText(mContentText);
+
+        if(c.getSize() == 0) {
+            try {
+                c.readFromCSV(getResources().openRawResource(R.raw.words));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        String ss = "The size of csvfile: " + c.getSize();
+
+        String test2 = c.getList(1);
+
+
+        String test3 = "";
+        test3 += c. getListA( 1).word;
+        test3 += c. getListA( 1).weight;
+        test3 += c. getListA( 1).pronunciation;
+        test3 += c. getListA( 1).verb;
+        test3 += c. getListA( 1).verbt;
+        test3 += c. getListA( 1).verbi;
+        test3 += c. getListA( 1).noun;
+        test3 += c. getListA( 1).adj;
+        test3 += c. getListA( 1).adv;
+        test3 += c. getListA( 1).prep;
+        test3 += c. getListA( 1).conj;
+        test3 += c. getListA( 1).sentence;
+        test3 += c. getListA( 1).looklike;
+        test3 += c. getListA( 1).homoionym;
+        test3 += c. getListA( 1).antonym;
+
+
+
+        contentTv.setText(test3);
+//
+//        recyclerView = rootView.findViewById(R.id.recyclerview);
+//        final WordListAdapter adapter = new WordListAdapter(this.getContext());
+//        recyclerView.setAdapter(adapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        //contenttv = rootView.findViewById(R.id.testtvv);
+
+//        mWordViewModel.getmAllWords().observe(this, new Observer<List<WordData>>() {
+//            @Override
+//            public void onChanged(@Nullable final List<WordData> words) {
+//                // Update the cached copy of the words in the adapter.
+//                adapter.setWords(words);
+//            }
+//        });
+
         return rootView;
     }
-
 }
