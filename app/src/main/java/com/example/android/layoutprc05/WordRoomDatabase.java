@@ -96,12 +96,12 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 //
 //            }
 
-            WordData word2 = new WordData("Test", 1, "pro", "Testv",  "Testt", "Testi", "Testn",
-                    "Testa", "TestAdv", "Prep", "Conj", "sentence", "Looklike", "homoinym", "ho");
-
-//            mDao.insertBycsv("Test", 1, "pro", "Testv",  "Testt", "Testi", "Testn",
+//            WordData word2 = new WordData("Test", 1, "pro", "Testv",  "Testt", "Testi", "Testn",
 //                    "Testa", "TestAdv", "Prep", "Conj", "sentence", "Looklike", "homoinym", "ho");
-            mDao.insert(word2);
+//
+////            mDao.insertBycsv("Test", 1, "pro", "Testv",  "Testt", "Testi", "Testn",
+////                    "Testa", "TestAdv", "Prep", "Conj", "sentence", "Looklike", "homoinym", "ho");
+//            mDao.insert(word2);
 
 //        WordData word = new WordData("Hello");
 //        mDao.insert(word);
@@ -112,7 +112,7 @@ public abstract class WordRoomDatabase extends RoomDatabase {
             c.getList();
 
             for(int i = 0; i < c.getSize(); i++) {
-                WordData word3 = new WordData(
+                WordData word3 = new WordData(i,
                      c. getListA( 1).word, c. getListA( 1).weight,
                         c. getListA( 1).pronunciation, c. getListA( 1).verb,
                         c. getListA( 1).verbt, c. getListA( 1).verbi,

@@ -9,16 +9,13 @@ import android.support.annotation.NonNull;
 public class WordData {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo( name = "wordid")
-    @NonNull
+    @ColumnInfo( name = "id")
+    //@NonNull
     public int mWordId;
 
-    @NonNull
-    //@PrimaryKey
+    //@NonNull
     @ColumnInfo( name = "word")
     public String mWord;
-
-   // public Word(@Nullable String word) { this.mWord = word;}
 
     //@NonNull
     @ColumnInfo( name = "mWeight")
@@ -52,6 +49,12 @@ public class WordData {
     @ColumnInfo( name = "conj")
     public String mConj;
 
+    @NonNull
+    public int getWeight() { return this.mWeight; }
+
+    @NonNull
+    public int getId() { return this.mWordId;}
+
     @ColumnInfo( name = "sentence")
     public String mSentence;
 
@@ -64,9 +67,12 @@ public class WordData {
     @ColumnInfo( name = "antonym")
     public String mAntonym;
 
-    public WordData(String WORD, int WEIGHT, String PRONUNCIATION, String VERB, String VERBT,
+    public WordData() {}
+
+    public WordData(int ID , String WORD, int WEIGHT, String PRONUNCIATION, String VERB, String VERBT,
                     String VERBI, String NOUN, String ADJ, String ADV, String PREP, String CONJ, String SENTENCE,
                     String LOOKLIKE, String HOMOIONYM, String ANTONYM ) {
+        this.mWordId = ID;
         this.mWord = WORD;
         this.mWeight = WEIGHT;
         this.mPronunciation = PRONUNCIATION;
@@ -84,6 +90,52 @@ public class WordData {
         this.mAntonym = ANTONYM;
     }
 
-    public WordData() {}
+
+    //@NonNull
+    public String getSentence() {return this.mSentence; }
+
+    //@NonNull
+    public String getLooklike() { return this.mLooklike; }
+
+   // @NonNull
+    public String getHomoionym() { return this.mHomoionym; }
+
+    //@NonNull
+    public String getAntonym() { return this.mAntonym; }
+
+   // @NonNull
+    public String getConj() { return this.mConj; }
+
+    //@NonNull
+    public String getPrep() { return this.mPrep; }
+
+    //@NonNull
+    public String getAdv() { return this.mAdv; }
+
+
+   // @NonNull
+    public String getAdj() { return this.mAdj; }
+
+
+   // @NonNull
+    public String getNoun() { return this.mNoun; }
+
+
+    //@NonNull
+    public String getVerbi() { return this.mVerbi; }
+
+
+    //@NonNull
+    public String getVerbt() { return this.mVerbt; }
+
+
+   // @NonNull
+    public String getVerb() { return this.mVerb; }
+
+   // @NonNull
+    public String getPronunciation() { return this.mPronunciation; }
+
+   // @NonNull
+    public String getWord() { return this.mWord; }
 
 }
