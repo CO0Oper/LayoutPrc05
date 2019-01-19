@@ -15,19 +15,17 @@ public interface WordDao {
     @Insert
     void insert(WordData worddata);
 
-//    @Insert
-//    void insertBycsv(String WORD, int WEIGHT, String PRONUNCIATION, String VERB, String VERBT,
-//                     String VERBI, String NOUN, String ADJ, String ADV, String PREP, String CONJ, String SENTENCE,
-//                     String LOOKLIKE, String HOMOIONYM, String ANTONYM );
-
-    @Query("SELECT mWeight FROM WORD_TABLE ORDER BY mWeight ASC")
-    Cursor getWeight();
-
     @Delete
     void deleteAll(WordData wordData);
 
-    @Query("SELECT * FROM WORD_TABLE ORDER BY mWeight ASC")
-    LiveData<List<WordData>> getWordbyweight();
+    @Query("SELECT weight FROM WORD_TABLE ORDER BY weight ASC")
+    Cursor getWeight();
+
+    @Query("SELECT * FROM WORD_TABLE ORDER BY weight ASC")
+    LiveData<List<WordData>> getAllbyweight();
     //List<WordData> getAllbyweight();
+
+    @Query("SELECT * FROM WORD_TABLE ORDER BY id ASC")
+    LiveData<List<WordData>> getAllbyID();
 
 }
