@@ -21,15 +21,12 @@ public class WordRepository {
     WordRepository(Application application) {
         WordRoomDatabase db = WordRoomDatabase.getDatabase(application);
         mWordDao = db.wordDao();
-        mAllwords = mWordDao.getWordbyweight();
+        mAllwords = mWordDao.getAllbyweight();
     }
 
     LiveData<List<WordData>> getAllWords() {
         return mAllwords;
     }
-//    List<WordData> getAllWords() {
-//    return mAllwords;
-//}
 
     /**
      * insert method, must call on non-ui thread.

@@ -6,9 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class BlankFragment extends Fragment {
@@ -22,6 +27,10 @@ public class BlankFragment extends Fragment {
 
     private WordViewModel mWordViewModel;
 
+    private EditText editText;
+
+
+
     CSVreader c = new CSVreader();
 
     RecyclerView recyclerView;
@@ -29,7 +38,6 @@ public class BlankFragment extends Fragment {
     public BlankFragment() {
         // Required empty public constructor
     }
-
 
 //    /**
 //     * Use this factory method to create a new instance of
@@ -45,8 +53,6 @@ public class BlankFragment extends Fragment {
 //        fragment.setArguments(args);
 //        return fragment;
 //    }
-
-
     /**
      *  Create a new fragment.
      * @return
@@ -63,34 +69,18 @@ public class BlankFragment extends Fragment {
         if (getArguments() != null) {
             mContentText = getArguments().getString(ARG_SHOW_TEXT);
         }
-       // mWordViewModel = ViewModelProvider.of(this).get(WordViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        /*
-        In fragment_blank.xml
-    <android.support.v7.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"
-        tools:listitem="@layout/recyclerview_item">
+
+        final View rootView = inflater.inflate(R.layout.fragment_blank, container, false);
 
 
 
-    </android.support.v7.widget.RecyclerView>
-         */
-
-        //String mContentText = "The size is : " + getSize();
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_blank, container, false);
-        TextView contentTv = rootView.findViewById(R.id.testtvv);
-       // contentTv.setText(mContentText);
-
+//       // final Button mButton = rootView.findViewById(R.id.button1);
+//
         if(c.getSize() == 0) {
             try {
                 c.readFromCSV(getResources().openRawResource(R.raw.words));
@@ -98,37 +88,73 @@ public class BlankFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-
-        String ss = "The size of csvfile: " + c.getSize();
-
-        String test2 = c.getList(1);
-
-
-        String test3 = "";
-        test3 += c. getListA( 1).word;
-        test3 += c. getListA( 1).weight;
-        test3 += c. getListA( 1).pronunciation;
-        test3 += c. getListA( 1).verb;
-        test3 += c. getListA( 1).verbt;
-        test3 += c. getListA( 1).verbi;
-        test3 += c. getListA( 1).noun;
-        test3 += c. getListA( 1).adj;
-        test3 += c. getListA( 1).adv;
-        test3 += c. getListA( 1).prep;
-        test3 += c. getListA( 1).conj;
-        test3 += c. getListA( 1).sentence;
-        test3 += c. getListA( 1).looklike;
-        test3 += c. getListA( 1).homoionym;
-        test3 += c. getListA( 1).antonym;
-
+//
+//
+//
+//        mButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                int index = 0 ;
+//                editText = (EditText) rootView.findViewById(R.id.edit_query);
+//                mTextView = rootView.findViewById(R.id.testtvv);
+//                String getIndex = editText.getText().toString();
+//
+//                index = Integer.parseInt(getIndex);
+//                String test3 = "nothing";
+//
+//                test3 += c. getListA( index).word;
+//                test3 += c. getListA( index).weight;
+//                test3 += c. getListA( index).pronunciation;
+//
+//                mTextView.setText(test3);
+//            }
+//        });
 
 
-        contentTv.setText(test3);
+
+//        test3 += c. getListA( index).verb;
+//        test3 += c. getListA( index).verbt;
+//        test3 += c. getListA( index).verbi;
+//        test3 += c. getListA( index).noun;
+//        test3 += c. getListA( index).adj;
+//        test3 += c. getListA( index).adv;
+//        test3 += c. getListA( index).prep;
+//        test3 += c. getListA( index).conj;
+//        test3 += c. getListA( index).sentence;
+//        test3 += c. getListA( index).looklike;
+//        test3 += c. getListA( index).homoionym;
+//        test3 += c. getListA( index).antonym;
+
+
+
+
 //
 //        recyclerView = rootView.findViewById(R.id.recyclerview);
 //        final WordListAdapter adapter = new WordListAdapter(this.getContext());
 //        recyclerView.setAdapter(adapter);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        Bubble b = new Bubble();
+        Bubble [] bubbles = new Bubble[100];
+
+        int [] index = b.getsortedIndex();
+
+        int [] tempArray = new int [38];
+
+        for (int i = 0; i < index.length; i++ ){
+            b = new Bubble(index[i],tempArray);
+            bubbles [i] = b;
+        }
+//
+//        for (int j = 0; j < index.length; j++ ){
+//            b = new Bubble(tempArray);
+//            bubbles [index[j]] = null;
+//            bubbles [index[j]] = b;
+//        }
+
+        GridView gridView = rootView.findViewById(R.id.gridview);
+        BubbleAdapter bubbleAdapter = new BubbleAdapter(this.getContext(), bubbles);
+        gridView.setAdapter(bubbleAdapter);
+
 
         //contenttv = rootView.findViewById(R.id.testtvv);
 
@@ -142,4 +168,5 @@ public class BlankFragment extends Fragment {
 
         return rootView;
     }
+
 }
