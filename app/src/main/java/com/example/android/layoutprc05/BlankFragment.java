@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+//1
 public class BlankFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
