@@ -40,8 +40,6 @@ public abstract class WordRoomDatabase extends RoomDatabase {
             public void onOpen (@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
             new PopulateDbAsync(INSTANCE).execute();
-
-
         }
             };
 
@@ -61,78 +59,28 @@ public abstract class WordRoomDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(final Void... params) {
 
-            String word, pronunciation, verb, verbt, verbi, noun,
-                    adj, adv, prep, conj, sentence, looklike, homoionym, antonym;
-            int weight;
-
-             //c = new CSVreader();
+            int id, weight, master;
 
             mDao.deleteAll(wordData);
-
-            //WordCons wo = new WordCons();
-
-//            for(int i = 0; i < c.getSize(); i++ ){
-//                wo = c.getData(i);
-//                word = wo.word;
-//                weight = wo.weight;
-//                pronunciation = wo.pronunciation;
-//                verb = wo.verb;
-//                verbt = wo.verbt;
-//                verbi = wo.verbi;
-//                noun = wo.noun;
-//                adj = wo.adj;
-//                adv = wo.adv;
-//                prep = wo.prep;
-//                conj = wo.conj;
-//                sentence = wo.sentence;
-//                looklike = wo.looklike;
-//                homoionym = wo.homoionym;
-//                antonym = wo.antonym;
-//
-//                WordData worddb = new WordData(word, weight, pronunciation, verb, verbt, verbi,
-//                        noun, adj, adv, prep, conj, sentence, looklike, homoionym,antonym);
-//
-//                mDao.insert(worddb);
-//
-//            }
-
-//            WordData word2 = new WordData("Test", 1, "pro", "Testv",  "Testt", "Testi", "Testn",
-//                    "Testa", "TestAdv", "Prep", "Conj", "sentence", "Looklike", "homoinym", "ho");
-//
-////            mDao.insertBycsv("Test", 1, "pro", "Testv",  "Testt", "Testi", "Testn",
-////                    "Testa", "TestAdv", "Prep", "Conj", "sentence", "Looklike", "homoinym", "ho");
-//            mDao.insert(word2);
 
 //        WordData word = new WordData("Hello");
 //        mDao.insert(word);
 //        wordDA = new Word("World");
 //        mDao.insert(word);
 
-//
             c.getList();
-
             for(int i = 0; i < c.getSize(); i++) {
                 WordData word3 = new WordData(i,
-                     c. getListA( 1).word, c. getListA( 1).weight,
-                        c. getListA( 1).pronunciation, c. getListA( 1).verb,
-                        c. getListA( 1).verbt, c. getListA( 1).verbi,
-                        c. getListA( 1).noun, c. getListA( 1).adj,
-                        c. getListA( 1).adv, c. getListA( 1).prep,
-                        c. getListA( 1).conj, c. getListA( 1).sentence,
-                        c. getListA( 1).looklike, c. getListA( 1).homoionym,
-                        c. getListA( 1).antonym
+                     c. getListA( i).weight,
+                        0
                 );
                 mDao.insert(word3);
             }
-
             return null;
         }
-
-
     }
 
-
-
-
-
+    public String getDBpath(){
+        return getDBpath();
+    }
 }
