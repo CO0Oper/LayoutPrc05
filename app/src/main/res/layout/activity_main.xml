@@ -22,7 +22,7 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/today_tab"
+            android:id="@+id/main_words"
             style="@style/Custom.TabRadioButton"
             android:checked="true"
             android:drawableTop="@drawable/module"/>
@@ -30,7 +30,7 @@
         <View style="@style/Custom.TabRadioButton" />
 
         <RadioButton
-            android:id="@+id/contact_tab"
+            android:id="@+id/user_settings"
             style="@style/Custom.TabRadioButton"
             android:drawableTop="@drawable/person"/>
 

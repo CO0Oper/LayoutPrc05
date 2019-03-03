@@ -1,12 +1,16 @@
 package com.example.android.layoutprc05;
 
 import android.content.Context;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -45,11 +49,17 @@ public class BubbleAdapter extends BaseAdapter {
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             convertView = layoutInflater.inflate(R.layout.gridbubbles, null);
+
+            TextView button1 = convertView.findViewById(R.id.but);
+            button1.setText("10");
+            button1.setBackgroundResource(R.drawable.circle_shape);
+            //button1.setLayoutParams(new ViewGroup.LayoutParams(6,6));
+           // button1.setPadding(2,6,2,6);
+            //convertView.setAdjustViewBounds(true);
         }
 
-        Button button1 = convertView.findViewById(R.id.but);
-        button1.setText("10");
-        button1.setBackgroundResource(R.drawable.circle_shape);
+//        button1.setHeight(6);
+//        button1.setWidth(6);
        // button1.getLayoutParams().height = 30;
 //        TextView mTextView = new TextView(mContext);
 //        mTextView.setText(String.valueOf(position));
@@ -57,4 +67,18 @@ public class BubbleAdapter extends BaseAdapter {
         //ooo++;
         return convertView;
     }
+//    public static int getScreenWidth(Context context) {
+//        WindowManager manager = (WindowManager) context
+//                .getSystemService(Context.WINDOW_SERVICE);
+//        Display display = manager.getDefaultDisplay();
+//        return display.getWidth();
+//    }
+//
+//    public static int dipToPx(Context context, int dip) {
+//        if(density <= 0.0F) {
+//            density = context.getResources().getDisplayMetrics().density;
+//        }
+//
+//        return (int)((float)dip * density + 0.5F);
+//    }
 }

@@ -1,47 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:id="@+id/blankfg_container"
+    android:background="?android:windowBackground"
     tools:context=".BlankFragment">
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/testtvv"-->
-            <!--style="@style/word_title"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="#b2ebf2" />-->
-
-
-        <!--<EditText-->
-            <!--android:id="@+id/edit_query"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="Enter the query index: " />-->
-
-        <!--<Button-->
-            <!--android:id="@+id/button1"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="hint me" />-->
-    <!--</LinearLayout>-->
 
     <GridView
         android:id="@+id/gridview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:columnWidth="10dp"
+        android:columnWidth="25dp"
         android:numColumns="10"
-        android:verticalSpacing="12dp"
-        android:horizontalSpacing="7dp"
         android:stretchMode="spacingWidthUniform"
-        >
+        android:verticalSpacing="33dp">
     </GridView>
 
 </RelativeLayout>
